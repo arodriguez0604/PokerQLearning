@@ -37,7 +37,7 @@ deck = [None] * 52
 def createDeck():
     for x in 4:
         for y in 13:
-            deck[(13 * x) + ] = Card(x, y)
+            deck[(13 * x) + y] = Card(x, y + 1)
 
 def shuffle():
     for x in deck:
