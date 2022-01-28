@@ -32,24 +32,20 @@ class Card:
 
         self.id = value + (self - 1) * 13
 
-    def ChangeID(self, id):
+    def setID(self, id):
         self.id = id
 
-class Deck:
-    deck = [None] * 52
+    def getID(self):
+        return self.id
+    
+    def setValue(self, value):
+        self.value = value
+    
+    def getValue(self):
+        return self.value
 
-    def __init__(self):
-        for x in 4:
-            for y in 13:
-                self.deck[(13 * x) + y] = Card(x, y + 1)
-
-    # def shuffle(self):
-    #     temp[52]
-
-    #     for i in 52:
-    #         temp[i] = i
-
-    #     for x in self.deck:
-    #         tempNum = temp[random.int(0, 51 - x)]
-    #         Card.ChangeID(tempNum + 1])
-    #         temp.remove(tempNum)
+    def setSuit(self, suit):
+        self.suit = suit
+    
+    def getSuit(self):
+        return self.suit
