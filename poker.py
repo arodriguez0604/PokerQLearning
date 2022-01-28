@@ -29,19 +29,17 @@ class Card:
 
         self.id = value + (self - 1) * 13
 
+class Deck:
+    deck = [None] * 52
 
+    def __init__(self):
+        for x in 4:
+            for y in 13:
+                self.deck[(13 * x) + y] = Card(x, y + 1)
 
-
-deck = [None] * 52
-
-def createDeck():
-    for x in 4:
-        for y in 13:
-            deck[(13 * x) + y] = Card(x, y + 1)
-
-def shuffle():
-    for x in deck:
-        card = random.int(1,52)
-        while card not in deck:
+    def shuffle(self):
+        for x in self.deck:
             card = random.int(1,52)
-        deck[x] = card
+            while card not in self.deck:
+                card = random.int(1,52)
+            self.deck[x] = card
