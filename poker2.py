@@ -55,3 +55,8 @@ class deck:
             for y in 13:
                 self.deck.append(Card(x, y + 1))
 
+    def shuffle(self):
+        for i in range (1,52,1):
+            r = random.randint(0,i)
+            self.deck[i], self.deck[r] = self.deck[r], self.deck[i]
+
