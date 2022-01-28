@@ -1,8 +1,4 @@
-#SUIT: 0 - Spades, 1 - Diamonds, 2 - Clubs, 3 - Hearts
-
-import math as m
-from multiprocessing.sharedctypes import Value
-from random import random
+import random
 
 #Suit (0-3); Value (1-13)
 class Card:
@@ -50,23 +46,17 @@ class Card:
     def getSuit(self):
         return self.suit
 
-class Deck:
-    deck = [None] * 52
+
+class deck:
 
     def __init__(self):
+        self.deck = []
         for x in 4:
             for y in 13:
-                self.deck[(13 * x) + y] = Card(x, y + 1)
+                self.deck.append(Card(x, y + 1))
 
-    # def shuffle(self):
-    #     temp[52]
-
-    #     for i in rand(1, 52):
-    #         temp[i] = i
-
-    #     for x in self.deck:
-    #         tempNum = temp[random.int(0, 51 - x)]
-    #         self.deck[x].ChangeID(tempNum + 1])
-    #         temp.remove(tempNum)
-
+    def shuffle(self):
+        for i in range (1,52,1):
+            r = random.randint(0,52)
+            self.deck[i], self.deck[r] = self.deck[r], self.deck[i]
 
