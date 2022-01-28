@@ -49,3 +49,24 @@ class Card:
     
     def getSuit(self):
         return self.suit
+
+class Deck:
+    deck = [None] * 52
+
+    def __init__(self):
+        for x in 4:
+            for y in 13:
+                self.deck[(13 * x) + y] = Card(x, y + 1)
+
+    # def shuffle(self):
+    #     temp[52]
+
+    #     for i in rand(1, 52):
+    #         temp[i] = i
+
+    #     for x in self.deck:
+    #         tempNum = temp[random.int(0, 51 - x)]
+    #         self.deck[x].ChangeID(tempNum + 1])
+    #         temp.remove(tempNum)
+
+
