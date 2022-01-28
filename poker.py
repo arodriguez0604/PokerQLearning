@@ -43,5 +43,7 @@ def createDeck():
 
 def shuffle():
     for x in deck:
-
-    random.int()
+        card = random.int(1,52)
+        while card not in deck:
+            card = random.int(1,52)
+        deck[x] = card
