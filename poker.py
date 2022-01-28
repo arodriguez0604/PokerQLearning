@@ -43,13 +43,13 @@ class Deck:
             for y in 13:
                 self.deck[(13 * x) + y] = Card(x, y + 1)
 
-    def shuffle(self):
-        temp[52]
+    # def shuffle(self):
+    #     temp[52]
 
-        for i in 52:
-            temp[i] = i
+    #     for i in 52:
+    #         temp[i] = i
 
-        for x in self.deck:
-            tempNum = temp[random.int(0, 51 - x)]
-            Card.ChangeID(tempNum + 1])
-            temp.remove(tempNum)
+    #     for x in self.deck:
+    #         tempNum = temp[random.int(0, 51 - x)]
+    #         Card.ChangeID(tempNum + 1])
+    #         temp.remove(tempNum)
