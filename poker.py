@@ -2,7 +2,7 @@ class card:
     suit = ''
     value = 0
 
-# deck[52]
+# deck[4][13]
 
 # def createDeck():
 #     for x in 4:
