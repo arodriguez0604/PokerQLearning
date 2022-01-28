@@ -27,7 +27,13 @@ class Card:
                         
         self.value = value
 
+        if (value + (self - 1) * 13 < 1 or value + (self - 1) * 13 > 52):
+            print ("Error: Bad id assignment [Poker.py]")
+
         self.id = value + (self - 1) * 13
+
+    def ChangeID(self, id):
+        self.id = id
 
 class Deck:
     deck = [None] * 52
@@ -38,8 +44,12 @@ class Deck:
                 self.deck[(13 * x) + y] = Card(x, y + 1)
 
     def shuffle(self):
+        temp[52]
+
+        for i in 52:
+            temp[i] = i
+
         for x in self.deck:
-            card = random.int(1,52)
-            while card not in self.deck:
-                card = random.int(1,52)
-            self.deck[x] = card
+            tempNum = temp[random.int(0, 51 - x)]
+            Card.ChangeID(tempNum + 1])
+            temp.remove(tempNum)
