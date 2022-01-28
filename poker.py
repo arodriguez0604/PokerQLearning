@@ -29,7 +29,7 @@ class Card:
 
         self.id = value + (self - 1) * 13
 
-class Deck:
+class Deck:    
     deck = [None] * 52
 
     def __init__(self):
