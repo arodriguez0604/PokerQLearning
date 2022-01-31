@@ -24,10 +24,10 @@ class Card:
                         
         self.value = value
 
-        if (value + (self - 1) * 13 < 1 or value + (self - 1) * 13 > 52):
+        if (value + suit * 13 < 1 or value + suit * 13 > 52):
             print ("Error: Bad id assignment [Poker.py]")
 
-        self.id = value + (self - 1) * 13
+        self.id = value + suit * 13
 
     def setID(self, id):
         self.id = id
@@ -47,7 +47,6 @@ class Card:
     def getSuit(self):
         return self.suit
 
-
 class Deck:
 
     def __init__(self):
@@ -60,6 +59,13 @@ class Deck:
         for i in range (1,52,1):
             r = random.randint(0,52)
             self.deck[i], self.deck[r] = self.deck[r], self.deck[i]
+        
+    #returns an array of 2 cards
+    def dealCards(self):
+        dealtCards = [self.deck.pop(len(self.deck) - 1), self.deck.pop(len(self.deck) - 1)]
+        return dealtCards
+    
+
 
 class Hand:
     hand = []
@@ -67,11 +73,14 @@ class Hand:
     def __init__(self, card1, card2):
         self.hand.append(card1)
         self.hand.append(card2)
-    
+
+        if not self.hand:
+            print ("Error: Bad Hand Allocation [Pokey.py]")    
+
     def getHand(self):
         return self.hand
 
-    def newHand(self, card1, card2):
+    def newHand(self, deck):
         try:
             self.hand.pop(len(self.hand) - 1)
             self.hand.pop(len(self.hand) - 1)
@@ -81,5 +90,19 @@ class Hand:
         if (len(self.hand) != 0):
             print ("Error: Bad Hand Removal [Poker.py]")
 
-        self.hand.append(card1)
-        self.hand.append(card2)
+        handoff = deck.dealCards()
+
+        self.hand.append(handoff[0])
+        self.hand.append(handoff[1])
+
+        if not self.hand:
+            print ("Error: Bad Hand Allocation [Pokey.py]")
+
+#Start of main function
+card1 = Card(3, 13)
+print("ID: ")
+print(card1.getID())
+print("\nValue: ")
+print(card1.getValue())
+print("\nSuit: ")
+print(card1.getSuit())
