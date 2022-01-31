@@ -47,7 +47,7 @@ class Card:
         return self.suit
 
 
-class deck:
+class Deck:
 
     def __init__(self):
         self.deck = []
@@ -60,3 +60,9 @@ class deck:
             r = random.randint(0,52)
             self.deck[i], self.deck[r] = self.deck[r], self.deck[i]
 
+class Hand:
+    hand = []
+
+    def __init__(self, card1, card2):
+        self.hand.append(card1)
+        self.hand.append(card2)
