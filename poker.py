@@ -1,3 +1,4 @@
+from ast import Try
 import random
 
 #Suit (0-3); Value (1-13)
@@ -64,5 +65,21 @@ class Hand:
     hand = []
 
     def __init__(self, card1, card2):
+        self.hand.append(card1)
+        self.hand.append(card2)
+    
+    def getHand(self):
+        return self.hand
+
+    def newHand(self, card1, card2):
+        try:
+            self.hand.pop(len(self.hand) - 1)
+            self.hand.pop(len(self.hand) - 1)
+        except:
+            print ("Error: Bad Hand Removal [Poker.py]")
+        
+        if (len(self.hand) != 0):
+            print ("Error: Bad Hand Removal [Poker.py]")
+
         self.hand.append(card1)
         self.hand.append(card2)
