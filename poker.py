@@ -51,31 +51,43 @@ class Deck:
 
     def __init__(self):
         self.deck = []
-        for x in 4:
-            for y in 13:
+        for x in range(4):
+            for y in range(13):
                 self.deck.append(Card(x, y + 1))
 
     def shuffle(self):
-        for i in range (1,52,1):
-            r = random.randint(0,52)
-            self.deck[i], self.deck[r] = self.deck[r], self.deck[i]
+        for i in range (51, -1, -1):
+            r = random.randint(0, i)
+            temp = self.deck[i]
+            self.deck[i] = self.deck[r]
+            self.deck[r] = temp
         
-    #returns an array of 2 cards
-    def dealCards(self):
-        dealtCards = [self.deck.pop(len(self.deck) - 1), self.deck.pop(len(self.deck) - 1)]
-        return dealtCards
+    #returns a card
+    def drawCard(self):
+        return self.deck.pop(len(self.deck) - 1)
     
 
 
 class Hand:
     hand = []
+    river = False
 
     def __init__(self, card1, card2):
         self.hand.append(card1)
         self.hand.append(card2)
+        river = False
 
         if not self.hand:
-            print ("Error: Bad Hand Allocation [Pokey.py]")    
+            print ("Error: Bad Hand Allocation [Pokey.py]")   
+
+    def __init__(self, card1, card2, card3):
+        self.hand.append(card1)
+        self.hand.append(card2)
+        self.hand.append(card3)
+        river = True
+
+        if not self.hand:
+            print ("Error: Bad Hand Allocation [Pokey.py]")  
 
     def getHand(self):
         return self.hand
@@ -99,10 +111,7 @@ class Hand:
             print ("Error: Bad Hand Allocation [Pokey.py]")
 
 #Start of main function
-card1 = Card(3, 13)
-print("ID: ")
-print(card1.getID())
-print("\nValue: ")
-print(card1.getValue())
-print("\nSuit: ")
-print(card1.getSuit())
+deck = Deck()
+deck.shuffle()
+for i in range(52):
+    print(deck.drawCard().getID())
