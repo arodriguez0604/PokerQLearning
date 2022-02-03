@@ -48,27 +48,6 @@ class Card:
     def getSuit(self):
         return self.suit
 
-class Group:
-    cardNum = 0
-    def __init__(self, cardTempNum):
-        cardNum = cardTempNum
-        self.resetHand()
-
-    def resetHand():
-        hand = []
-    
-    def addCard(self, card):
-        self.hand.append(card)
-        # maybe add a check for no duplicates?
-
-    def removeCard(self, card):
-        self.hand.remove(self.hand.index(card))
-        # maybe add a check to only remove if the card exists
-        
-    def displayCards(self):
-        for x in self.hand:
-            print (self.hand[x])
-
 class Deck:
 
     def __init__(self):
@@ -88,9 +67,15 @@ class Deck:
     def drawCard(self):
         return self.deck.pop(len(self.deck) - 1)
 
+    def display(self):
+        for i in self.deck:
+            print(self.deck[i].getValue()+self.deck[i].getSuit()+" ")    
+
 class Player:
     hand = []
-    river = False
+
+    def __init__(self):
+        self.hand = []
 
     def __init__(self, deck, river):
         for i in range(2):
