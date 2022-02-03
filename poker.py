@@ -48,26 +48,6 @@ class Card:
     def getSuit(self):
         return self.suit
 
-class group:
-    cardNum = 0
-    def __init__(self, cardTempNum):
-        cardNum = cardTempNum
-        self.resetHand()
-
-    def resetHand():
-        hand = []
-    
-    def addCard(self, card):
-        self.hand.append(card)
-        # maybe add a check for no duplicates?
-
-    def removeCard(self, card):
-        self.hand.remove(self.hand.index(card))
-        # maybe add a check to only remove if the card exists
-    def displayCards(self):
-        for x in self.hand:
-            print (self.hand[x])
-
 class Deck:
 
     def __init__(self):
@@ -86,17 +66,21 @@ class Deck:
     #returns a card
     def drawCard(self):
         return self.deck.pop(len(self.deck) - 1)
-    
+
+    def display(self):
+        for i in self.deck:
+            print(self.deck[i].getValue()+self.deck[i].getSuit()+" ")    
 
 
 class Hand:
     hand = []
-    river = False
+
+    def __init__(self):
+        self.hand = []
 
     def __init__(self, card1, card2):
         self.hand.append(card1)
         self.hand.append(card2)
-        river = False
 
         if not self.hand:
             print ("Error: Bad Hand Allocation [Pokey.py]")   
@@ -105,7 +89,6 @@ class Hand:
         self.hand.append(card1)
         self.hand.append(card2)
         self.hand.append(card3)
-        river = True
 
         if not self.hand:
             print ("Error: Bad Hand Allocation [Pokey.py]")  
@@ -123,10 +106,8 @@ class Hand:
         if (len(self.hand) != 0):
             print ("Error: Bad Hand Removal [Poker.py]")
 
-        handoff = deck.dealCards()
-
-        self.hand.append(handoff[0])
-        self.hand.append(handoff[1])
+        self.hand.append(deck.drawCard())
+        self.hand.append(deck.drawCard())
 
         if not self.hand:
             print ("Error: Bad Hand Allocation [Pokey.py]")
@@ -135,4 +116,4 @@ class Hand:
 deck = Deck()
 deck.shuffle()
 for i in range(52):
-    print(deck.drawCard().getID())
+    deck.display()
