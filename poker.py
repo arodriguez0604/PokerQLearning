@@ -1,3 +1,4 @@
+from cgitb import reset
 import random
 
 #Suit (0-3); Value (1-13)
@@ -45,6 +46,29 @@ class Card:
     
     def getSuit(self):
         return self.suit
+
+class group:
+    cardNum = 0
+    def __init__(self, cardTempNum):
+        cardNum = cardTempNum
+        self.resetHand()
+
+    def resetHand():
+        hand = []
+    
+    def addCard(self, card):
+        self.hand.append(card)
+        # maybe add a check for no duplicates?
+
+    def removeCard(self, card):
+        self.hand.remove(self.hand.index(card))
+        # maybe add a check to only remove if the card exists
+
+    def displayCards(self):
+        for x in self.hand:
+            print (self.hand[x])
+    
+
 
 
 class deck:
