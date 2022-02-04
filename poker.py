@@ -48,6 +48,10 @@ class Card:
     def getSuit(self):
         return self.suit
 
+    def display(self):
+        print ("{}{}".format(self.value, self.suit))
+
+
 class Deck:
 
     def __init__(self):
@@ -69,7 +73,7 @@ class Deck:
 
     def display(self):
         for i in self.deck:
-            print(self.deck[i].getValue()+self.deck[i].getSuit()+" ")    
+            print(i.display())
 
 
 class Hand:
