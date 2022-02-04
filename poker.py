@@ -6,7 +6,6 @@ import random
 class Card:
     suit = ''
     value = 0
-    id = 0
     
     def __init__(self, suit, value):
         if (suit == 0):
@@ -27,14 +26,6 @@ class Card:
 
         if (value + suit * 13 < 1 or value + suit * 13 > 52):
             print ("Error: Bad id assignment [Poker.py]")
-
-        self.id = value + suit * 13
-
-    def setID(self, id):
-        self.id = id
-
-    def getID(self):
-        return self.id
     
     def setValue(self, value):
         self.value = value
@@ -63,72 +54,60 @@ class Deck:
     def shuffle(self):
         for i in range (51, -1, -1):
             r = random.randint(0, i)
-            temp = self.deck[i]
-            self.deck[i] = self.deck[r]
-            self.deck[r] = temp
+            self.deck[r], self.deck[i] = self.deck[i], self.deck[r] 
         
     #returns a card
     def drawCard(self):
-        return self.deck.pop(len(self.deck) - 1)
+        return self.deck.pop(0)
 
     def display(self):
         for i in self.deck:
             print(i.display())
 
-class Player:
+class Group:
     hand = []
+    cards = 0
 
     def __init__(self):
         self.hand = []
 
-    def __init__(self, deck, river):
-        for i in range(2):
+    def __init__(self, deck, card):
+        card = self.cards
+        for k in range(self.cards):
             self.hand.append(deck.drawCard())
-        
-        if (river == True):
-            self.river = True
-            self.hand.append(deck.drawCard())
-
-        if not self.hand:
-            print ("Error: Bad Hand Allocation [Pokey.py]")   
-
-    def getHand(self):
-        return self.hand
-
-    def newHand(self, deck):
-        try:
-            for i in range(2):
-                self.hand.pop(len(self.hand) - 1)
-            if (self.river):
-                for j in range(3):
-                    self.hand.pop(len(self.hand) - 1)
-
-        except:
-            print ("Error: Bad Hand Removal [Poker.py]")
-        
-        if (len(self.hand) != 0):
-            print ("Error: Bad Hand Removal [Poker.py]")
-
-        for k in range(2):
-            self.hand.append(deck.drawCard())
-        if (self.river):
-            self.hand.append(deck.drawCard())
-
         if not self.hand:
             print ("Error: Bad Hand Allocation [Pokey.py]")
         
-    def addCard(self, deck):
-        if (self.river):
+    def newHand(self, deck):
+        try:
+            for i in range(self.cards):
+                self.hand.pop(0)
+        except:
+            print ("Error: Bad Hand Removal [Poker.py]")
+
+        for k in range(self.cards):
             self.hand.append(deck.drawCard())
+        
+        if not self.hand:
+            print ("Error: Bad Hand Allocation [Pokey.py]")
+
+    def getHand(self):
+        return self.hand
+    
+    def displayHand(self):
+        for i in self.hand:
+            i.display()
+
         
 
 
 #Start of main function
 deck = Deck()
 deck.shuffle()
+deck.display()
 
-player1 = Player(deck, True)
-hand = player1.getHand()
-
-for i in range(len(hand)):
-    print(hand[i].getID())
+player1 = Group(deck, 2)
+print ("\n\n\nHAND:")
+player1.displayHand()
+print ("\n\n\n")
+deck.display()
