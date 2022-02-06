@@ -62,7 +62,7 @@ class Deck:
 
     def display(self):
         for i in self.deck:
-            print(i.display())
+            i.display()
 
 class Group:
     hand = []
@@ -72,7 +72,7 @@ class Group:
         self.hand = []
 
     def __init__(self, deck, card):
-        card = self.cards
+        self.cards = card
         for k in range(self.cards):
             self.hand.append(deck.drawCard())
         if not self.hand:
@@ -105,9 +105,6 @@ class Group:
 deck = Deck()
 deck.shuffle()
 deck.display()
-
 player1 = Group(deck, 2)
 print ("\n\n\nHAND:")
 player1.displayHand()
-print ("\n\n\n")
-deck.display()
