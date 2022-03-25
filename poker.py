@@ -66,30 +66,41 @@ class Deck:
 
 class Group:
     hand = []
-    cards = 0
+    numOfCards = 0
+    pot = 0
 
     def __init__(self):
         self.hand = []
 
-    def __init__(self, deck, card):
-        self.cards = card
-        for k in range(self.cards):
+    def __init__(self, deck, numOfCards, pot):
+        self.numOfCards = numOfCards
+        self.pot = pot
+        for k in range(self.numOfCards):
             self.hand.append(deck.drawCard())
+            
         if not self.hand:
             print ("Error: Bad Hand Allocation [Pokey.py]")
-        
-    def newHand(self, deck):
-        try:
-            for i in range(self.cards):
-                self.hand.pop(0)
-        except:
-            print ("Error: Bad Hand Removal [Poker.py]")
 
-        for k in range(self.cards):
+    def newHand(self, deck, numOfCards):
+        for i in range(self.cards):
+            self.hand.pop(0)
+
+        for k in range(numOfCards):
             self.hand.append(deck.drawCard())
         
         if not self.hand:
             print ("Error: Bad Hand Allocation [Pokey.py]")
+    
+    def pullPotMoney(self, potChange):
+        if (potChange > self.potChange):
+            print ("Error: Too big of change [Poker.py]")
+            return 0
+
+        self.pot -= potChange
+        return potChange
+
+    def getPot(self):
+        return self.pot
 
     def getHand(self):
         return self.hand
@@ -97,14 +108,38 @@ class Group:
     def displayHand(self):
         for i in self.hand:
             i.display()
+    
+    def resetPot(self, resetNum):
+        self.pot = resetNum
+
+def checkPlayerNum(amtOfPlayers, currentPlayer):
+    if (amtOfPlayers == currentPlayer):
+        return 0
+    return currentPlayer
+
+def round(players, offset):
+    totalPlayers = len(players)
+    currentPlayer = checkPlayerNum(totalPlayers, totalPlayers + offset)
 
         
+#def turn(player):
 
 
 #Start of main function
 deck = Deck()
 deck.shuffle()
-deck.display()
-player1 = Group(deck, 2)
-print ("\n\n\nHAND:")
-player1.displayHand()
+# deck.display()
+players = []
+amtOfPlayers = 0
+while amtOfPlayers == 0:
+    amtOfPlayers = int(input("How many players?: "))
+    if (amtOfPlayers == 0):
+        print("Please input a number greater than 0.")
+
+potSizeInit = 1000
+
+for i in range(amtOfPlayers):
+    players.append(Group(deck, 2, potSizeInit))
+    players[i].getHand()
+
+
